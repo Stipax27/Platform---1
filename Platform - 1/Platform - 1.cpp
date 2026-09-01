@@ -1,99 +1,82 @@
 #include <iostream>
-// Данные игрока
-int pass;
-int wallet = 200;
-std::string answer;
 
-// Данные охранника
-int payoff;
-int honesty;
+// Обьявление namespace для написания функций без STD::
+using namespace std;
 
-void ResultBribe() // Функция для определения исходов при взятке 
+void Terminal()// Функция игры терминал 
 {
+	int number_player;// Число игрока
+	int random_terminal = 1 + rand()%100;// Число терминала
 
-	
-	std::cout << "(Yes/No)\n";
-	std::cin >> answer;
-
-	if (answer == "Yes")// Cогласие 
+	while (true)// Бесконечный цикл 
 	{
 
-		std::cout << "Give me the money\n";
-		if (wallet >= payoff) // Проверка на стоимость
-		{
-			std::cout << "Okay come on in\n";
-			wallet -= payoff;
-			std::cout << "Player: I still have\n";
-			std::cout << wallet;
+		int lie_terminal = 1 + rand()%100;// Число лжи терминала
+		// Вводные данные для игрока
+		cout << "-----------------------------------------------------------------------\n";
+		cout << "You have connected to the terminal of the company 'Bridges of Reality'.\n";
+		cout << "-----------------------------------------------------------------------\n";
+		cout << "Enter a number to hack the terminal (from 1 to 100)\n";
+		cin >> number_player;// Ввод игрока
 
-		}
-		else
+		//Проверка на соответсвие чисел
+		if (number_player == random_terminal)
 		{
 
-			std::cout << "Player: Damn , I don't have enough money\n";
-			std::cout << "Yeah yeah get lost\n";
+			cout << "Number of terminals:\t" << random_terminal << "\n";
+			cout << "User's number:\t" << number_player << "\n";
 
+			cout << "\n100101110101111010100101\n110101001011001011101011\n100101110101111010100101\n\n";
+
+			cout << "The terminal has been hacked\n";
+
+			break;// Закрытие цикла при соответсвии чисел
 		}
-	}
-	else if (answer == "No") // Отказ 
-	{
-		std::cout << "If you don't want to give money, then leave.\n";
-	}
-	else // Невнятный ответ
-	{
-		std::cout << "What are you talking about.\n";
+		else 
+		{
+			if (lie_terminal <= 30)// Проверка на лож терминала
+			{
+				if (number_player < random_terminal)// Проверка на то больше ли число или меньше чем у термианал
+				{
+					cout << "Incorrect data.\nBlocking\n";
+					cout << "----------------------------------------------------------\n";
+					cout << "Your number is higher than the one verified by the program\n";
+					cout << "----------------------------------------------------------\n";
+				}
+				else
+				{
+					cout << "Incorrect data.\nBlocking\n";
+					cout << "--------------------------------------------------------\n";
+					cout << "Your number is less than the one verified by the program\n";
+					cout << "--------------------------------------------------------\n";
+				}
+			}
+			else//
+			{
+				if (number_player < random_terminal)// Проверка на то больше ли число или меньше чем у термианал
+				{
+					cout << "Incorrect data.\nBlocking\n";
+					cout << "--------------------------------------------------------\n";
+					cout << "Your number is less than the one verified by the program\n";
+					cout << "--------------------------------------------------------\n";
+				}
+				else
+				{
+					cout << "Incorrect data.\nBlocking\n";
+					cout << "----------------------------------------------------------\n";
+					cout << "Your number is higher than the one verified by the program\n";
+					cout << "----------------------------------------------------------\n";
+				}
+			}
+
+			
+				
+		}
 	}
 }
 
 int main()
 {
 	srand(time(0));
-	// присвоение и рандом данных
-	pass = rand() % 2;
-	payoff = 50 + rand() % 200;
-	honesty = 1 + rand() % 100;
-
-	std::cout << "My money: " << wallet << "\n";
-	std::cout << "Stalker, to get into the zone, provide a pass.\n";
-
-	if (pass == 0) // Проверка на наличие пропуска
-	{
-
-		std::cout << "I have a pass.\n";
-		std::cout << "You'r welcome!";
-	}
-	else 
-	{
-		std::cout << "I don't have a pass.\n";
-
-		if (honesty <= 30) // Проверка на честность меньше 30 
-		{
-			std::cout << "You can give me some money, and we'll settle the matter.\n";
-			ResultBribe();
-		}
-		else if (honesty >= 30 && honesty <=69) // Проверка на честность от 30 до 69
-		{
-			std::cout << "I don't even know if he can give a bribe\n";
-			ResultBribe();
-		}
-		else // Проверка на честность от 70 до 100
-		{
-			std::cout << "I don't even know if he can give a bribe\n";
-			std::cout << "(Yes/No)\n";
-			std::cin >> answer;
-
-			if (answer == "Yes")
-			{
-				std::cout << "Leave right now, or I'll get a weapon.\n";
-			}
-			else if (answer == "No")
-			{
-				std::cout << "If you don't want to give money, then leave.\n";
-			}
-			else
-			{
-				std::cout << "What are you talking about.\n";
-			}
-		}
-	}
+	Terminal();// Вызов функции игры
 }
