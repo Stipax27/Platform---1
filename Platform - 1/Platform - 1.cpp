@@ -2,6 +2,8 @@
 
 int main()
 {
+    srand(time(0));// Аргумент для перерандома
+
     // Данные атакующего
     int strength = 100;
     int weapon_damage = 50;
