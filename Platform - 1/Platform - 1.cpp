@@ -2,81 +2,150 @@
 
 // Обьявление namespace для написания функций без STD::
 using namespace std;
-
-void Terminal()// Функция игры терминал 
+// Структуры Юнитов и Королей
+struct Unit
 {
-	int number_player;// Число игрока
-	int random_terminal = 1 + rand()%100;// Число терминала
+	string name;
+	int dmg;
+};
 
-	while (true)// Бесконечный цикл 
+struct King
+{
+	string name;
+	int Hp;
+};
+
+// Массив Юнитов и Переменные королей игрока и врага
+Unit pers[3];
+King Player;
+King Enemy;
+
+void RPS() {
+
+	int choice;// Переменная для выбора игрока
+	int choice_enemy = rand()%3;// Рандом для выбора врага
+
+	// Заполнение данных
+	Player.name;
+	Player.Hp = 200;
+
+	Enemy.name = "Trevor";
+	Enemy.Hp = 200;
+
+	pers[0].name = "Swordsman";
+	pers[0].dmg = 20;
+
+	pers[1].name = "Archer   ";
+	pers[1].dmg = 20;
+
+	pers[2].name = "Horseman ";
+	pers[2].dmg = 20;
+
+	// Начало игры
+	cout << "Enter your king's name\n";
+	cin >> Player.name;
+	
+
+	while (true)
 	{
+		cout << "------------------------------------------------------------------------------\n";
+		cout << "Choose the warrior you will play as (1 - Swordsman, 2 - Archer, 3 - Horseman)\n Where the archer is stronger than the swordsman,\n the horseman is stronger than the archer,\n and the swordsman is stronger than the horseman.\n The buff gives the warrior 2x damage boost.\n";
+		cout << "------------------------------------------------------------------------------\n";
 
-		int lie_terminal = 1 + rand()%100;// Число лжи терминала
-		// Вводные данные для игрока
-		cout << "-----------------------------------------------------------------------\n";
-		cout << "You have connected to the terminal of the company 'Bridges of Reality'.\n";
-		cout << "-----------------------------------------------------------------------\n";
-		cout << "Enter a number to hack the terminal (from 1 to 100)\n";
-		cin >> number_player;// Ввод игрока
-
-		//Проверка на соответсвие чисел
-		if (number_player == random_terminal)
+		for (int i = 0; i < 3; i++)
 		{
-
-			cout << "Number of terminals:\t" << random_terminal << "\n";
-			cout << "User's number:\t" << number_player << "\n";
-
-			cout << "\n100101110101111010100101\n110101001011001011101011\n100101110101111010100101\n\n";
-
-			cout << "The terminal has been hacked\n";
-
-			break;// Закрытие цикла при соответсвии чисел
+			cout << i + 1 << "\t" << pers[i].name << "   Damage:  " << pers[i].dmg << "\n";
 		}
-		else 
+
+		cout << "\nHealth " << Player.name << ": " << Player.Hp << "\n";
+		cout << "Health " << Enemy.name << ": " << Enemy.Hp << "\n";
+
+		cout << "Choose your warrior\n";
+		cin >> choice;
+		
+
+		if (choice == 1)
 		{
-			if (lie_terminal <= 30)// Проверка на лож терминала
-			{
-				if (number_player < random_terminal)// Проверка на то больше ли число или меньше чем у термианал
-				{
-					cout << "Incorrect data.\nBlocking\n";
-					cout << "----------------------------------------------------------\n";
-					cout << "Your number is higher than the one verified by the program\n";
-					cout << "----------------------------------------------------------\n";
-				}
-				else
-				{
-					cout << "Incorrect data.\nBlocking\n";
-					cout << "--------------------------------------------------------\n";
-					cout << "Your number is less than the one verified by the program\n";
-					cout << "--------------------------------------------------------\n";
-				}
-			}
-			else//
-			{
-				if (number_player < random_terminal)// Проверка на то больше ли число или меньше чем у термианал
-				{
-					cout << "Incorrect data.\nBlocking\n";
-					cout << "--------------------------------------------------------\n";
-					cout << "Your number is less than the one verified by the program\n";
-					cout << "--------------------------------------------------------\n";
-				}
-				else
-				{
-					cout << "Incorrect data.\nBlocking\n";
-					cout << "----------------------------------------------------------\n";
-					cout << "Your number is higher than the one verified by the program\n";
-					cout << "----------------------------------------------------------\n";
-				}
-			}
+			if (choice_enemy == 0) {
 
-			
-				
+				cout << pers[choice - 1].name <<" VS "<< pers[choice_enemy].name << "\n";
+				Player.Hp -= pers[choice_enemy].dmg;
+				Enemy.Hp -= pers[choice - 1].dmg;
+			}
+			else if (choice_enemy == 1)
+			{
+				cout << pers[choice - 1].name << " VS " << pers[choice_enemy].name << "\n";
+				Player.Hp -= pers[choice_enemy].dmg * 2;
+				Enemy.Hp -= pers[choice - 1].dmg;
+			}
+			else
+			{
+				cout << pers[choice - 1].name << " VS " << pers[choice_enemy].name << "\n";
+				Player.Hp -= pers[choice_enemy].dmg;
+				Enemy.Hp -= pers[choice - 1].dmg * 2;
+			}
 		}
+		else if (choice == 2)
+		{
+			if (choice_enemy == 0) {
+
+				cout << pers[choice - 1].name << " VS " << pers[choice_enemy].name << "\n";
+				Player.Hp -= pers[choice_enemy].dmg;
+				Enemy.Hp -= pers[choice - 1].dmg * 2;
+			}
+			else if (choice_enemy == 1)
+			{
+				cout << pers[choice - 1].name << " VS " << pers[choice_enemy].name << "\n";
+				Player.Hp -= pers[choice_enemy].dmg;
+				Enemy.Hp -= pers[choice - 1].dmg;
+			}
+			else
+			{
+				cout << pers[choice - 1].name << " VS " << pers[choice_enemy].name << "\n";
+				Player.Hp -= pers[choice_enemy].dmg * 2;
+				Enemy.Hp -= pers[choice - 1].dmg;
+			}
+		}
+		else
+		{
+			if (choice_enemy == 0) {
+
+				cout << pers[choice - 1].name << " VS " << pers[choice_enemy].name << "\n";
+				Player.Hp -= pers[choice_enemy].dmg * 2;
+				Enemy.Hp -= pers[choice - 1].dmg;
+			}
+			else if (choice_enemy == 1)
+			{
+				cout << pers[choice - 1].name << " VS " << pers[choice_enemy].name << "\n";
+				Player.Hp -= pers[choice_enemy].dmg;
+				Enemy.Hp -= pers[choice - 1].dmg * 2;
+			}
+			else
+			{
+				cout << pers[choice - 1].name << " VS " << pers[choice_enemy].name << "\n";
+				Player.Hp -= pers[choice_enemy].dmg;
+				Enemy.Hp -= pers[choice - 1].dmg;
+			}
+		}
+
+		if (Enemy.Hp <= 0)
+		{
+			cout << "Hooray, your king has won!!!\n";
+			break;
+		}
+
+		if (Player.Hp <= 0)
+		{
+			cout << "Defeat of your King (((\n";
+			break;
+		}
+
 	}
+	
 }
 
 int main()
 {
 	srand(time(0));
-	Terminal();// Вызов функции игры
+	RPS();// Вызов функции игры
 }
