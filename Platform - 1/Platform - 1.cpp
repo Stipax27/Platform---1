@@ -46,24 +46,24 @@ void RPS() {
 	cin >> Player.name;
 	
 
-	while (true)
+	while (true)// Бесконечный цикл игры
 	{
 		cout << "------------------------------------------------------------------------------\n";
 		cout << "Choose the warrior you will play as (1 - Swordsman, 2 - Archer, 3 - Horseman)\n Where the archer is stronger than the swordsman,\n the horseman is stronger than the archer,\n and the swordsman is stronger than the horseman.\n The buff gives the warrior 2x damage boost.\n";
 		cout << "------------------------------------------------------------------------------\n";
 
-		for (int i = 0; i < 3; i++)
+		for (int i = 0; i < 3; i++)//вывод данных всех воинов
 		{
 			cout << i + 1 << "\t" << pers[i].name << "   Damage:  " << pers[i].dmg << "\n";
 		}
-
+		// Вывод данных о королях
 		cout << "\nHealth " << Player.name << ": " << Player.Hp << "\n";
 		cout << "Health " << Enemy.name << ": " << Enemy.Hp << "\n";
-
+		
 		cout << "Choose your warrior\n";
 		cin >> choice;
 		
-
+		//Проверка на победу ничью или поражения
 		if (choice == 1)
 		{
 			if (choice_enemy == 0) {
@@ -127,7 +127,7 @@ void RPS() {
 				Enemy.Hp -= pers[choice - 1].dmg;
 			}
 		}
-
+		// Проверка на победу или поражение короля
 		if (Enemy.Hp <= 0)
 		{
 			cout << "Hooray, your king has won!!!\n";
