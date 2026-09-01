@@ -128,6 +128,12 @@ void RPS() {
 			}
 		}
 		// Проверка на победу или поражение короля
+		if (Enemy.Hp <= 0 && Player.Hp <= 0) 
+		{
+			cout << "Defeat of your King and defeat enemy King\n";
+			break;
+		}
+
 		if (Enemy.Hp <= 0)
 		{
 			cout << "Hooray, your king has won!!!\n";
