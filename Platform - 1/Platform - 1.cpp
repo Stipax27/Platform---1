@@ -3,7 +3,6 @@
 // Обьявление namespace для написания функций без STD::
 using namespace std;
 
-
 // Структуры Юнитов и Королей
 struct Unit
 {
