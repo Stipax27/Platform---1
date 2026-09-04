@@ -2,6 +2,8 @@
 
 // Обьявление namespace для написания функций без STD::
 using namespace std;
+
+
 // Структуры Юнитов и Королей
 struct Unit
 {
@@ -22,6 +24,7 @@ King Enemy;
 
 void RPS() {
 
+	srand(time(0));
 	int choice;// Переменная для выбора игрока
 	int choice_enemy = rand()%3;// Рандом для выбора врага
 
@@ -152,6 +155,5 @@ void RPS() {
 
 int main()
 {
-	srand(time(0));
 	RPS();// Вызов функции игры
 }
